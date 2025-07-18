@@ -1,0 +1,19 @@
+<div class="modal-backdrop" *ngIf="visible">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <h3>{{ note ? "Edit Note" : "New Note" }}</h3>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input formControlName="title" [class.invalid]="form.get('title')?.invalid && form.get('title')?.touched"/>
+      </div>
+      <div class="form-group">
+        <label>Content</label>
+        <textarea formControlName="content" rows="6" [class.invalid]="form.get('content')?.invalid && form.get('content')?.touched"></textarea>
+      </div>
+      <div class="actions">
+        <button type="button" class="btn secondary" (click)="close()">Cancel</button>
+        <button type="submit" class="btn primary" [disabled]="form.invalid">{{ note ? "Save" : "Create" }}</button>
+      </div>
+    </form>
+  </div>
+</div>

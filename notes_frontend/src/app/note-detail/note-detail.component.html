@@ -1,0 +1,21 @@
+<div class="note-detail" *ngIf="note; else noNote">
+  <div class="header-row">
+    <h3>{{ note.title || '(Untitled)' }}</h3>
+    <div>
+      <button class="icon-btn accent" title="Edit" (click)="onEdit()">
+        <span class="material-symbols-outlined">edit</span>
+      </button>
+      <button class="icon-btn secondary" title="Delete" (click)="onDelete()">
+        <span class="material-symbols-outlined">delete</span>
+      </button>
+    </div>
+  </div>
+  <div class="content">{{ note.content || '(No content)' }}</div>
+  <div class="meta">
+    <span>Created: {{ note.createdAt | date:'medium' }}</span>
+    <span>Last updated: {{ note.updatedAt | date:'medium' }}</span>
+  </div>
+</div>
+<ng-template #noNote>
+  <div class="no-note-hint">Select a note to view its details.</div>
+</ng-template>

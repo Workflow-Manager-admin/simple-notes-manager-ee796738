@@ -1,0 +1,20 @@
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <h2>Notes</h2>
+    <button class="icon-btn" title="Add Note" (click)="onCreate()">
+      <span class="material-symbols-outlined">add</span>
+    </button>
+  </div>
+  <ul class="note-list">
+    <li *ngFor="let note of notes"
+        (click)="onSelect(note)"
+        [class.selected]="selectedNoteId === note.id"
+        [attr.aria-current]="selectedNoteId === note.id ? 'page' : null">
+      <div class="note-title">{{ note.title || '(Untitled)' }}</div>
+      <div class="note-meta">{{ note.updatedAt | date:'mediumDate' }}</div>
+    </li>
+    <li *ngIf="notes.length === 0" class="empty-msg">
+      <span>No notes yet.</span>
+    </li>
+  </ul>
+</nav>

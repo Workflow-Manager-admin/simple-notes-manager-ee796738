@@ -1,0 +1,29 @@
+<div class="notes-app-layout">
+  <header class="app-header">
+    <span class="app-title">
+      <span class="material-symbols-outlined app-icon">note_alt</span>
+      Notes
+    </span>
+  </header>
+  <div class="main-area">
+    <notes-list
+      [notes]="notes"
+      [selectedNoteId]="selectedNoteId"
+      (noteSelect)="onNoteSelect($event)"
+      (createNew)="openCreateDialog()">
+    </notes-list>
+    <main class="content">
+      <note-detail
+        [note]="currentNote"
+        (edit)="openEditDialog()"
+        (delete)="onDelete()">
+      </note-detail>
+    </main>
+  </div>
+  <note-edit
+    [visible]="editDialogVisible"
+    [note]="editNote"
+    (cancel)="onDialogCancel()"
+    (save)="onDialogSave($event)">
+  </note-edit>
+</div>
